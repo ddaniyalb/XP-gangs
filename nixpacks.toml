@@ -1,0 +1,19 @@
+[build]
+# Use Node.js 18+ for better compatibility
+nixpkgs = ['nodejs_18', 'chromium', 'xvfb-run']
+
+[start]
+cmd = "node ."
+
+[variables]
+PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = "true"
+PUPPETEER_EXECUTABLE_PATH = "/nix/store/*/bin/chromium"
+
+[phases.setup]
+cmds = [
+  'npm ci --only=production',
+  'npm rebuild puppeteer --update-binary'
+]
+
+[phases.build]
+cmds = ['echo "Build phase complete"']
