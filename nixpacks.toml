@@ -3,7 +3,7 @@
 nixpkgs = ['nodejs_18', 'chromium', 'xvfb-run']
 
 [start]
-cmd = "node ."
+cmd = "xvfb-run -a --server-args='-screen 0 1024x768x24 -nolisten tcp -dpi 96' node index.js"
 
 [variables]
 PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = "true"
